@@ -5,7 +5,10 @@ using System.Text;
 
 namespace FiddleText.Backend
 {
-    public class TextFiddlerConfig
+    public enum LineAction
     {
+        Maintain = 0, 
+        Modify = 1,
+        Delete = 2
     }
 }

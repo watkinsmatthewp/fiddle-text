@@ -41,10 +41,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TextFiddler.cs" />
+    <Compile Include="Models\ProcessFileResult.cs" />
+    <Compile Include="Models\ProcessLineResult.cs" />
+    <Compile Include="ThirdParty\FastDirectoryEnumerator.cs" />
+    <Compile Include="Models\LineAction.cs" />
+    <Compile Include="Models\LineFiddlerRule.cs" />
+    <Compile Include="Models\TextFiddler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TextFiddlerConfig.cs" />
+    <Compile Include="Models\TextFiddlerConfig.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -5,11 +5,9 @@ using System.Text;
 
 namespace FiddleText.Backend
 {
-    class Program
+    public class ProcessLineResult
     {
-        static void Main(string[] args)
-        {
-
-        }
+        public LineAction ActionTaken { get; set; }
+        public string ResultLine { get; set; }
     }
 }
