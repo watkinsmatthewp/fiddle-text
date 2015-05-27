@@ -131,10 +131,15 @@ namespace FiddleText.Backend
                     {
                         using (StreamReader fileReader = new StreamReader(readStream))
                         {
+                            long lineNumber = 0;
                             while (!fileReader.EndOfStream)
                             {
+                                Console.WriteLine("Processing line " + (lineNumber++));
                                 ProcessLineResult lineResult = ProcessLine(fileReader.ReadLine());
-                                fileWriter.WriteLine(lineResult.ResultLine);
+                                if (lineResult.ActionTaken != LineAction.Delete)
+                                {
+                                    fileWriter.WriteLine(lineResult.ResultLine);
+                                }
                                 fileResult.LineChangeCounts[lineResult.ActionTaken]++;
                             }
                         }
@@ -145,7 +150,11 @@ namespace FiddleText.Backend
 
         private ProcessLineResult ProcessLine(string line)
         {
-            ProcessLineResult result = new ProcessLineResult();
+            ProcessLineResult result = new ProcessLineResult()
+            {
+                ActionTaken = LineAction.Maintain,
+                ResultLine = line
+            };
 
             foreach (LineFiddlerRule rule in Config.Rules)
             {
@@ -172,6 +181,9 @@ namespace FiddleText.Backend
                         default:
                             throw new ArgumentException("Unrecognized line action: " + rule.Action);
                     }
+                    
+                    // Don't process any more rules
+                    break;
                 }
             }
 
